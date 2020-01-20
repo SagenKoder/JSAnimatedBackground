@@ -1,11 +1,20 @@
 $(function() {
 
-	var canvas = document.getElementById('background-canvas');
+	var canvas = document.createElement('canvas');
+	canvas.id = "background-canvas";
+	$(canvas).css("position", "fixed");
+	$(canvas).css("top", "0");
+	$(canvas).css("left", "0");
+	$(canvas).css("width", "100vw");
+	$(canvas).css("height", "100vh");
+	$(canvas).css("z-index", "-1");
+	
+	document.body.appendChild(canvas);
 
 	var mouseX = 0;
 	var mouseY = 0;
 	
-	canvas.addEventListener('mousemove', function (evt) {
+	window.addEventListener('mousemove', function (evt) {
 		var rect = canvas.getBoundingClientRect();
 		mouseX = evt.clientX - rect.left;
 		mouseY = evt.clientY - rect.top;
