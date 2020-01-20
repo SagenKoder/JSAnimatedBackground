@@ -68,6 +68,13 @@ $(function() {
 		distanceToPoint(x, y) {
 			return Math.sqrt((x - this.x)*(x - this.x) + (y - this.y)*(y - this.y));
 		}
+		
+		setSpeed(speed) {
+			var len = Math.sqrt(this.dx * this.dx + this.dy * this.dy);
+				
+			this.dx = (this.dx / len) * speed;
+			this.dy = (this.dy / len) * speed;
+		}
 	}
 	
 	var dots = [];
@@ -79,7 +86,9 @@ $(function() {
 		
 		// always have 100 dots
 		if(dots.length < 100) {
-			dots.push(new Dot(canvas.width, canvas.height));
+			var dot = new Dot(canvas.width, canvas.height)
+			dot.setSpeed(Math.random() * 2 + 0.5); // Between 0.5 and 2.5
+			dots.push(dot);
 		}
 		
 		// update position of dots and check for death
@@ -136,6 +145,16 @@ $(function() {
 		}
 		
 		window.requestAnimationFrame(update);
+	}
+	
+	canvas.width  = window.innerWidth;
+	canvas.height = window.innerHeight;
+	for(var i = 0; i < 100; i++) {
+		var dot = new Dot(canvas.width, canvas.height);
+		dot.x = Math.random() * canvas.width;
+		dot.y = Math.random() * canvas.height;
+		dot.setSpeed(Math.random() * 2 + 0.5);
+		dots.push(dot);
 	}
 
 	window.requestAnimationFrame(update);
