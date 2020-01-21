@@ -52,10 +52,10 @@ $(function() {
 		}
 		
 		isDead() {
-			if((this.x < 0 && this.dx < 0) || (this.y < 0 && this.dy < 0)) {
+			if((this.x < -30 && this.dx < 0) || (this.y < -30 && this.dy < 0)) {
 				return true;
 			}
-			if((this.x > canvas.width && this.dx > 0) || (this.y > canvas.height && this.dy > 0)) {
+			if((this.x > canvas.width + 30 && this.dx > 0) || (this.y > canvas.height + 30 && this.dy > 0)) {
 				return true;
 			}
 			return false;
